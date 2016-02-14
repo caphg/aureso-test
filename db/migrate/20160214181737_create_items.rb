@@ -6,7 +6,7 @@ class CreateItems < ActiveRecord::Migration
       t.integer :value
       t.string :category
       t.string :subcategory
-      t.text :tag, array: true, default: []
+      t.text :tags, array: true, default: []
 
       t.timestamps null: false
     end
