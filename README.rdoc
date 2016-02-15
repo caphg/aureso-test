@@ -1,28 +1,48 @@
-== README
+Aureso – code exercise
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Requirements
+Create a simple ( Rails 4.x ) application which exposes:
+* an API endpoint as a public interface and ( 1 endpoint )
+* calculate a value based on certain conditions ( 1 attribute )
+#1 Public API Interface responds to the following requests:
+[POST] /api/v1/orders.json
+Based on RESTful paradigm POST request should make persistent data which are being
+send in this request. Endpoint should respond with relevant status.
+Format of the request acceptable by the server should looks in the following way: 
+#2 Calculate discount
+ Beside `total_amount_net` and `shipping_costs` attributes Order should respond to
+'discount_value' attribute, while making Order persistent.
+discount_value will have positive value only if items in order belongs to certain
+collections, otherwise value should be equal 0. Your solution should allow to setup list
+of collections ( it can be done in the code – not in UI interface, but must be fexible to
+use )
+discount_value should be calculated in two ways depends on the state of `Order`
+For Orders when `total_amount_net` is greater then 149.00 discount value is being
+calculated with “Prestige” policy.
+For any other case with “Fixed” policy. (described below)
+Maximum of `discount_value` has to be 25% of the value of Order. In case it reach above
+it it has to be set to be equal Maximum.
+"Fixed"
+`discount_value` is equal, how many words 'status' can you fnd on site
+https://developer.github.com/v3/#http-redirects
+"Prestige"
+`discount_value` is equal, how many pubDate elements can you fnd on page
+http://www.yourlocalguardian.co.uk/sport/rugby/rss/ 
+Acceptance Criteria:
+1. System should expose public interface which allows to create products with POST
+2. Order should set 'discount_value' accordingly to specifcation
+Required Models
+Beside of main Order model ( required ), it is up to you to create models which you
+fnd reasonable to use in this context.
+Authorization & Authentication
+Authentication method in the POST request for a purpose of test task must be omitted.
+Seed data
+Seed data are NOT required.
+GUI
+Any of the GUI elements are NOT required.
+While building this endpoint:
+* use git and commit possible often using descriptive commits descriptions
+* use OOP principles
+* use TDD and any test framework which is comfortable for you to build this application
+* use any gem and data storage which you can fnd useful
+Solution please send as an .zip fle to an email address: adam@aureso.com
