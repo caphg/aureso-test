@@ -4,12 +4,10 @@ module Api
 
       def create
         new_order = Order.new order_params
-        begin
-          new_order.save!
+        if new_order.save
           render json: OrderSerializer.new(new_order, root: false), status: :created
-        rescue => ex
-          logger.error ex.message
-          render json: {}, status: 422
+        else
+          render json: new_order.errors.full_messages, status: 422
         end
       end
 

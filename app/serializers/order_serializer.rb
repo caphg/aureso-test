@@ -6,15 +6,6 @@ class OrderSerializer < ActiveModel::Serializer
   has_many :items, key: :items
 
   def discount_value
-  	return 0 unless object.is_discount_value_positive?
-  	if object.total_amount_net.to_f > 149
-  		# prestige policy
-  		amount = prestige_discount
-  	else
-  		#fixed policy
-  		amount = fixed_discount
-  	end
-  	amount = object.order_value * 0.25 if amount / object.order_value > 0.25
-  	amount
+    object.discount_value
   end
 end
